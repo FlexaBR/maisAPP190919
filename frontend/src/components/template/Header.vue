@@ -6,24 +6,29 @@
         <h1 class="title">
             {{ title }}
         </h1>
+        <UserDropdown v-if="!hideUserDropdown" />
     </header>
 </template>
 
 <script>
+import UserDropdown from './UserDropdown'
+
 export default {
     name: 'Header',
+    components: { UserDropdown },
     props: {
         title: String,
-        hideToggle: Boolean
+        hideToggle: Boolean,
+        hideUserDropdown: Boolean
     },
     computed: {
         icon() {
-            return "fa-angle-left"
+            return this.$store.state.isMenuVisible ? "fa-angle-left" : "fa-angle-down"
         }
     },
     methods: {
         toggleMenu() {
-
+            this.$store.commit('toggleMenu')
         }
     }
 }
@@ -37,7 +42,8 @@ export default {
         background: linear-gradient(to right, #1e469a, #49a7c1);
         
         display: flex;
-        justify-content: center; 
+        justify-content: center;
+        align-items: center;
     }
     .title {
         font-size: 1.2rem;
@@ -62,6 +68,7 @@ export default {
         align-items: center;
     }
     header.header > a.toggle:hover {
+        color: #fff;
         background-color: rgba(0, 0, 0, 0.2);
     }
 

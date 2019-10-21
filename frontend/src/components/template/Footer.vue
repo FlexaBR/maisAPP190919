@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <span>Copyright <strong>Flexa</strong>©2019</span>
+        <span>Flexa©2019</span>
     </footer>
 </template>
 
